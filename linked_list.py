@@ -26,7 +26,7 @@ def add(anylist, index, value, i = 0):
     elif(i == index and index == length(anylist)):
         return Pair(value, "mt")
     elif(index > length(anylist) or index < 0):
-        raise IndexError
+        raise IndexError()
     else:
         return add(anylist.rest, index, value, i + 1)
 
@@ -43,7 +43,7 @@ def length(anylist):
 # index in the given AnyList
 def get(anylist, index, i = 0):
     if(index >= length(anylist) or index < 0):
-        raise IndexError
+        raise IndexError()
     elif(i == index):
         return anylist.first
     else:
@@ -54,11 +54,19 @@ def get(anylist, index, i = 0):
 # given index in the given AnyList to the new given value
 def set(anylist, index, value, i = 0):
     if(index >= length(anylist) or index < 0):
-        raise IndexError
-    elif(i == index and index < length(anylist)):
+        raise IndexError()
+    elif(i == index):
         return Pair(value, anylist.rest)
     else:
         return set(anylist.rest, index, value, i + 1)
 
-# AnyList integer -> tuple
-# takes in an AnyList and an integer index and removes the 
+# AnyList integer -> (value, AnyList)
+# takes in an AnyList and an integer index and removes the value at the given index and returns a
+# tuple containing the value removed and the resulting list
+def remove(anylist, index, i = 0):
+    if(index >= length(anylist) or index < 0):
+        raise IndexError()
+    elif(i == index):
+        return (anylist.first, anylist.rest)
+    else:
+        return remove(anylist.rest, index, i + 1)
