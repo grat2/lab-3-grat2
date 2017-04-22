@@ -33,7 +33,7 @@ def add(anylist, index, value, i = 0):
 # AnyList -> integer
 # takes in an AnyList and returns the length of the list
 def length(anylist):
-    if(anylist == "mt"):
+    if(anylist == "mt" or anylist == None):
         return 0
     else:
         return 1 + length(anylist.rest)
